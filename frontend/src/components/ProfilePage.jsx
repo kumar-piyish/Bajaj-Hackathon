@@ -23,7 +23,7 @@ const ProfilePage = ({ darkMode }) => {
   ]
 
   return (
-    <main className="container mx-auto px-4 py-8 max-w-4xl">
+    <main className="container mx-auto px-4 py-8 max-w-4xl pt-[102px]">
 
       <div className={`p-6 rounded-xl shadow-lg mb-8 transition-colors duration-300 ${darkMode ? 'bg-gray-800' : 'bg-white'}`}>
         <div className="flex flex-col md:flex-row items-center">

@@ -32,7 +32,7 @@ const Navbar = ({ darkMode, toggleDarkMode, token, setToken }) => {
             alt="InsureEase Logo"
             className="w-10 h-10 md:w-12 md:h-12"
           />
-          <span className="text-xl md:text-2xl font-bold">InsureEase</span>
+          <span className={`text-xl md:text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-700'}`}>InsureEase</span>
         </div>
 
         {/* Desktop menu */}

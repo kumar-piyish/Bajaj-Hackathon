@@ -1,5 +1,8 @@
 @import "tailwindcss";
-body {
-  padding-top: 72px;
+/* index.css or global.css */
+html, body {
+  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
   font-family: "Outfit", sans-serif;
 }
