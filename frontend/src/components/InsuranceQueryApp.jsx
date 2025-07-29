@@ -4,6 +4,7 @@ import {
   FiUpload, FiSend, FiRefreshCw,
 } from 'react-icons/fi';
 import QueryHistory from './QueryHistory';
+import ReactMarkdown from 'react-markdown';
 
 const InsuranceQueryApp = ({ darkMode, token }) => {
   const [documentName, setDocumentName] = useState('');
@@ -220,9 +221,12 @@ localStorage.setItem('lastUploadedDocName', file.name);
                 darkMode?'bg-gray-800':'bg-white'
               }`}>
                 <h2 className="text-xl font-bold mb-4">Response</h2>
-                <p className={darkMode?'text-gray-300':'text-gray-700'}>
-                  {response.summary}
-                </p>
+          <div className="markdown-body">
+  <ReactMarkdown>{response.summary}</ReactMarkdown>
+</div>
+
+
+
                 <div className="flex gap-4 mt-4 text-2xl">
                   <button onClick={() => sendFeedback('up')}>👍</button>
                   <button onClick={() => sendFeedback('down')}>👎</button>
