@@ -89,11 +89,28 @@ def process_query(
 
     context_chunks = retrieve_relevant(req.query, k=5)
 
-    prompt = (
-        "You are an insurance assistant. Based on these policy excerpts:\n\n"
-        + "\n---\n".join(context_chunks)
-        + f"\n\nUser question: {req.query}\nAnswer concisely."
-    )
+    prompt = (f"""
+You are a smart, professional assistant who specializes in analyzing health insurance policies.
+
+Your task is to answer a user's question about coverage by reviewing:
+
+1. The extracted content from a policy document
+2. A specific user question about a health situation
+
+--- POLICY DOCUMENT CONTENT ---
+{chr(10).join(context_chunks)}
+
+--- USER'S QUERY ---
+"{req.query}"
+
+🎯 Your response must be:
+- ✅ Start with a **clear, direct answer** in 1 sentence (e.g., "Yes, this is covered", "No, this isn't covered", or "It depends")
+- 💬 Then give a **simple explanation** in plain English that a non-expert can understand (1–2 short paragraphs max)
+- 📑 Include a **short bullet list of supporting clauses** (quoted briefly from the policy)
+- ❗ If key details are missing (e.g., waiting period info), say that clearly and suggest what the user can check
+
+📝 Keep the format friendly, brief, and easy to scan. Use bullet points, spaces, and bold headers where helpful. Avoid long paragraphs or legal jargon.
+""")
 
     model = genai.GenerativeModel("gemini-2.5-pro")
     resp = model.generate_content(prompt)
